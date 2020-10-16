@@ -8,7 +8,7 @@
           round
           icon="menu"
           aria-label="Menu"
-          @click="leftDrawerOpen = !leftDrawerOpen"
+          v-on:click="leftDrawerOpen = !leftDrawerOpen"
           class="q-pa-md"
         />
 
@@ -25,9 +25,9 @@
       content-class="bg-grey-1"
     >
       <q-expansion-item class="q-pt-lg" icon="pages" label="Montage de plaque">
-        <q-list>
-          <EssentialLink
-            v-for="link in essentialLinks"
+        <q-list class="q-pl-lg">
+          <MontagePlaqueComponents
+            v-for="link in menuJsonMontageDePlaque"
             :key="link.title"
             v-bind="link"
           />
@@ -40,102 +40,11 @@
         label="Configuration Mini PC"
       >
         <q-list class="q-pl-lg">
-          <q-item to="/configBase">
-            <q-item-section avatar>
-              <q-icon name="check" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Configuration de base</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-expansion-item icon="check" label="contrôle parental">
-            <q-list class="q-pl-lg">
-              <q-item to="/motdepasse" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Mot de passe </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item to="/compteKiddoware" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Lier le compte kiddoware </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item to="/autorisation" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Autorisitation et bloquage </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-expansion-item>
-          <q-item to="/save">
-            <q-item-section avatar>
-              <q-icon name="check" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label> Sauvegarde et restauration</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-expansion-item icon="check" label="Paramètres">
-            <q-list class="q-pl-lg">
-              <q-item to="/parametres" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Contrôle parental</q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item to="/parametreAvances" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Paramètres avancés </q-item-label>
-                </q-item-section>
-              </q-item>
-              <q-item to="/parametreInterface" class="q-pl-lg">
-                <q-item-section avatar>
-                  <q-icon name="check" />
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label> Paramètres interface </q-item-label>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-expansion-item>
-          <q-item to="/gestionutilisateur">
-            <q-item-section avatar>
-              <q-icon name="check" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label> Gestion Utilisateur</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item to="/extinction">
-            <q-item-section avatar>
-              <q-icon name="check" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label> Extinction</q-item-label>
-            </q-item-section>
-          </q-item>
-          <q-item to="/verification">
-            <q-item-section avatar>
-              <q-icon name="check" />
-            </q-item-section>
-            <q-item-section>
-              <q-item-label>Verfication configuration </q-item-label>
-            </q-item-section>
-          </q-item>
+          <ConfigurationComponents
+            v-for="link in menuJsonConfiguration"
+            :key="link.title"
+            v-bind="link"
+          />
         </q-list>
       </q-expansion-item>
     </q-drawer>
@@ -147,9 +56,10 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+import ConfigurationComponents from "components/MenuConfiguration.vue";
+import MontagePlaqueComponents from "components/MenuMontagePlaque.vue";
 
-const linksData = [
+const montageDePlaque = [
   {
     title: "Materiels",
     icon: "check",
@@ -191,14 +101,86 @@ const linksData = [
     to: "/miseEnPlace"
   }
 ];
+const configuration = [
+  {
+    title: "Configuration de base",
+    icon: "check",
+    to: "/configBase"
+  },
+  {
+    title: "Contrôle parental",
+    icon: "check",
+    to: "",
+    multi: [
+      {
+        title: "Mot de passe ",
+        icon: "check",
+        to: "/motdepasse"
+      },
+      {
+        title: "Lier le compte kiddoware",
+        icon: "check",
+        to: "/compteKiddoware"
+      },
+      {
+        title: "Autorisation et bloquage",
+        icon: "check",
+        to: "/autorisation"
+      }
+    ]
+  },
+  {
+    title: "Sauvegarde et restauration",
+    icon: "check",
+    to: "/save"
+  },
+  {
+    title: "Paramètres",
+    icon: "check",
+    to: "",
+    multi: [
+      {
+        title: "Contrôle parental",
+        icon: "check",
+        to: "/parametres"
+      },
+      {
+        title: "Paramètre avancés",
+        icon: "check",
+        to: "/parametreAvances"
+      },
+      {
+        title: "Paramètre interface",
+        icon: "check",
+        to: "/parametreInterface"
+      }
+    ]
+  },
+  {
+    title: "Gestion Utilisateur",
+    icon: "check",
+    to: "/gestionutilisateur"
+  },
+  {
+    title: "Extinction",
+    icon: "check",
+    to: "/extinction"
+  },
+  {
+    title: "Verfication configuration",
+    icon: "check",
+    to: "/verification"
+  }
+];
 
 export default {
   name: "MainLayout",
-  components: { EssentialLink },
+  components: { MontagePlaqueComponents, ConfigurationComponents },
   data() {
     return {
       leftDrawerOpen: false,
-      essentialLinks: linksData
+      menuJsonMontageDePlaque: montageDePlaque,
+      menuJsonConfiguration: configuration
     };
   }
 };
