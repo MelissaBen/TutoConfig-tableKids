@@ -20,7 +20,7 @@
           default-opened
           v-else
           :label="item.title"
-          icon="check"
+          :icon="item.icon"
         >
           <q-list
             v-for="tiroir in item.multi"
