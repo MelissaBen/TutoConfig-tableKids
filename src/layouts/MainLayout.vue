@@ -24,11 +24,7 @@
       bordered
       content-class="bg-grey-1"
     >
-      <MenuComponents
-        v-for="link in menuJson"
-        :key="link.title"
-        v-bind="link"
-      />
+      <MenuComponents v-for="link in Menu" :key="link.title" v-bind="link" />
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -173,7 +169,7 @@ export default {
   data() {
     return {
       leftDrawerOpen: false,
-      menuJson: Menu
+      Menu
     };
   }
 };
