@@ -24,12 +24,31 @@
       bordered
       content-class="bg-grey-1"
     >
-      <MenuComponents
-        v-for="link in menuJson"
-        :key="link.title"
-        v-bind="link"
-      />
+      <q-expansion-item class="q-pt-lg" icon="pages" label="Montage de plaque">
+        <q-list class="q-pl-lg">
+          <MontagePlaqueComponents
+            v-for="link in menuJsonMontageDePlaque"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-list>
+      </q-expansion-item>
+
+      <q-expansion-item
+        class="q-pt-lg"
+        icon="pages"
+        label="Configuration Mini PC"
+      >
+        <q-list class="q-pl-lg">
+          <ConfigurationComponents
+            v-for="link in menuJsonConfiguration"
+            :key="link.title"
+            v-bind="link"
+          />
+        </q-list>
+      </q-expansion-item>
     </q-drawer>
+
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -39,7 +58,6 @@
 <script>
 import ConfigurationComponents from "components/MenuConfiguration.vue";
 import MontagePlaqueComponents from "components/MenuMontagePlaque.vue";
-import MenuComponents from "components/Menu.vue";
 
 const montageDePlaque = [
   {
@@ -81,131 +99,6 @@ const montageDePlaque = [
     title: "Mise en place | Accroche des câbles",
     icon: "check",
     to: "/miseEnPlace"
-  }
-];
-const Menu = [
-  {
-    label: "Montage de plaque1",
-    icon: "pages",
-    to: "",
-    tab: [
-      {
-        title: "Materiels",
-        icon: "check",
-        to: "/materiels"
-      },
-      {
-        title: "Plaques & cables",
-        icon: "check",
-        to: "/cables"
-      },
-      {
-        title: "Fixation des câbles et mini PC",
-        icon: "check",
-        to: "/fixationCables"
-      },
-      {
-        title: "Positionnement adhésif",
-        icon: "check",
-        to: "/positionAdhésif"
-      },
-      {
-        title: "Collage alimentation de l'écran",
-        icon: "check",
-        to: "/collage"
-      },
-      {
-        title: "Adhésif de protection",
-        icon: "check",
-        to: "/adhésifDeProtection"
-      },
-      {
-        title: "Vérification cablages du mini PC",
-        icon: "check",
-        to: "/verificationCables"
-      },
-      {
-        title: "Mise en place | Accroche des câbles",
-        icon: "check",
-        to: "/miseEnPlace"
-      }
-    ]
-  },
-  {
-    label: "Configuration Mini pc ",
-    icon: "pages",
-    to: "",
-    tab: [
-      {
-        title: "Configuration de base",
-        icon: "check",
-        to: "/configBase"
-      },
-      {
-        title: "Contrôle parental",
-        icon: "check",
-        to: "",
-        multi: [
-          {
-            title: "Mot de passe ",
-            icon: "check",
-            to: "/motdepasse"
-          },
-          {
-            title: "Lier le compte kiddoware",
-            icon: "check",
-            to: "/compteKiddoware"
-          },
-          {
-            title: "Autorisation et bloquage",
-            icon: "check",
-            to: "/autorisation"
-          }
-        ]
-      },
-      {
-        title: "Sauvegarde et restauration",
-        icon: "check",
-        to: "/save"
-      },
-      {
-        title: "Paramètres",
-        icon: "check",
-        to: "",
-        multi: [
-          {
-            title: "Contrôle parental",
-            icon: "check",
-            to: "/parametres"
-          },
-          {
-            title: "Paramètre avancés",
-            icon: "check",
-            to: "/parametreAvances"
-          },
-          {
-            title: "Paramètre interface",
-            icon: "check",
-            to: "/parametreInterface"
-          }
-        ]
-      },
-      {
-        title: "Gestion Utilisateur",
-        icon: "check",
-        to: "/gestionutilisateur"
-      },
-      {
-        title: "Extinction",
-        icon: "check",
-        to: "/extinction"
-      },
-      {
-        title: "Verfication configuration",
-        icon: "check",
-        to: "/verification"
-      }
-    ]
   }
 ];
 const configuration = [
@@ -282,17 +175,12 @@ const configuration = [
 
 export default {
   name: "MainLayout",
-  components: {
-    MontagePlaqueComponents,
-    ConfigurationComponents,
-    MenuComponents
-  },
+  components: { MontagePlaqueComponents, ConfigurationComponents },
   data() {
     return {
       leftDrawerOpen: false,
       menuJsonMontageDePlaque: montageDePlaque,
-      menuJsonConfiguration: configuration,
-      menuJson: Menu
+      menuJsonConfiguration: configuration
     };
   }
 };
