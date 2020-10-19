@@ -44,15 +44,14 @@
 
 <script>
 export default {
-  name: "menu",
+  name: "Menu",
   props: {
     label: {
       type: String,
       required: true
     },
     title: {
-      type: String,
-      required: true
+      type: String
     },
     to: {
       type: String,
@@ -63,10 +62,10 @@ export default {
       default: ""
     },
     multi: {
-      type: Object
+      type: Array
     },
     tab: {
-      type: Object
+      type: Array
     }
   }
 };
