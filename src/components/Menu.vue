@@ -51,7 +51,8 @@ export default {
       required: true
     },
     title: {
-      type: String
+      type: String,
+      required: false
     },
     to: {
       type: String,

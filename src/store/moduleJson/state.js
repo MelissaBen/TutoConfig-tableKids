@@ -2,7 +2,7 @@ export default function () {
   return {
     //
 
-    MenuJson = [
+    MenuJson : [
       {
         label: "Montage de plaque",
         icon: "pages",
@@ -126,6 +126,85 @@ export default function () {
           }
         ]
       }
+    ], 
+    Page: [
+      {
+        label: "Configuration Mini pc ",
+        icon: "pages",
+        to: "",
+        tab: [
+          {
+            title: "Configuration de base",
+            icon: "check",
+            to: "/configBase"
+          },
+          {
+            title: "Contrôle parental",
+            icon: "check",
+            to: "",
+            multi: [
+              {
+                title: "Mot de passe ",
+                icon: "check",
+                to: "/motdepasse"
+              },
+              {
+                title: "Lier le compte kiddoware",
+                icon: "check",
+                to: "/compteKiddoware"
+              },
+              {
+                title: "Autorisation et bloquage",
+                icon: "check",
+                to: "/autorisation"
+              }
+            ]
+          },
+          {
+            title: "Sauvegarde et restauration",
+            icon: "check",
+            to: "/save"
+          },
+          {
+            title: "Paramètres",
+            icon: "check",
+            to: "",
+            multi: [
+              {
+                title: "Contrôle parental",
+                icon: "check",
+                to: "/parametres"
+              },
+              {
+                title: "Paramètre avancés",
+                icon: "check",
+                to: "/parametreAvances"
+              },
+              {
+                title: "Paramètre interface",
+                icon: "check",
+                to: "/parametreInterface"
+              }
+            ]
+          },
+          {
+            title: "Gestion Utilisateur",
+            icon: "check",
+            to: "/gestionutilisateur"
+          },
+          {
+            title: "Extinction",
+            icon: "check",
+            to: "/extinction"
+          },
+          {
+            title: "Verfication configuration",
+            icon: "check",
+            to: "/verification"
+          }
+        ]
+      }
+      
     ]
   }
 }

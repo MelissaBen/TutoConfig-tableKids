@@ -4,6 +4,7 @@
     <div class="q-pa-md flex flex-center items-start q-gutter-md">
       <q-card v-for="(item, index) in Materials" :key="item.id" class="my-card">
         <q-img :src="Materials[index].image" basic>
+          <!-- "img/" Materials[index].to.+"/"IMG-"+Materials[index].ID+""."+Materials[index].extension-->
           <div class="absolute-bottom text-subtitle2 text-center">
             {{ Materials[index].item }}
           </div>

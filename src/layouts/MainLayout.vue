@@ -24,7 +24,11 @@
       bordered
       content-class="bg-grey-1"
     >
-      <MenuComponents v-for="link in Menu" :key="link.title" v-bind="link" />
+      <MenuComponents
+        v-for="link in this.getMenuJson"
+        :key="link.title"
+        v-bind="link"
+      />
     </q-drawer>
     <q-page-container>
       <router-view />
@@ -34,143 +38,25 @@
 
 <script>
 import MenuComponents from "components/Menu.vue";
-
-const Menu = [
-  {
-    label: "Montage de plaque1",
-    icon: "pages",
-    to: "",
-    tab: [
-      {
-        title: "Materiels",
-        icon: "check",
-        to: "/materiels"
-      },
-      {
-        title: "Plaques & cables",
-        icon: "check",
-        to: "/cables"
-      },
-      {
-        title: "Fixation des câbles et mini PC",
-        icon: "check",
-        to: "/fixationCables"
-      },
-      {
-        title: "Positionnement adhésif",
-        icon: "check",
-        to: "/positionAdhésif"
-      },
-      {
-        title: "Collage alimentation de l'écran",
-        icon: "check",
-        to: "/collage"
-      },
-      {
-        title: "Adhésif de protection",
-        icon: "check",
-        to: "/adhésifDeProtection"
-      },
-      {
-        title: "Vérification cablages du mini PC",
-        icon: "check",
-        to: "/verificationCables"
-      },
-      {
-        title: "Mise en place | Accroche des câbles",
-        icon: "check",
-        to: "/miseEnPlace"
-      }
-    ]
-  },
-  {
-    label: "Configuration Mini pc ",
-    icon: "pages",
-    to: "",
-    tab: [
-      {
-        title: "Configuration de base",
-        icon: "check",
-        to: "/configBase"
-      },
-      {
-        title: "Contrôle parental",
-        icon: "check",
-        to: "",
-        multi: [
-          {
-            title: "Mot de passe ",
-            icon: "check",
-            to: "/motdepasse"
-          },
-          {
-            title: "Lier le compte kiddoware",
-            icon: "check",
-            to: "/compteKiddoware"
-          },
-          {
-            title: "Autorisation et bloquage",
-            icon: "check",
-            to: "/autorisation"
-          }
-        ]
-      },
-      {
-        title: "Sauvegarde et restauration",
-        icon: "check",
-        to: "/save"
-      },
-      {
-        title: "Paramètres",
-        icon: "check",
-        to: "",
-        multi: [
-          {
-            title: "Contrôle parental",
-            icon: "check",
-            to: "/parametres"
-          },
-          {
-            title: "Paramètre avancés",
-            icon: "check",
-            to: "/parametreAvances"
-          },
-          {
-            title: "Paramètre interface",
-            icon: "check",
-            to: "/parametreInterface"
-          }
-        ]
-      },
-      {
-        title: "Gestion Utilisateur",
-        icon: "check",
-        to: "/gestionutilisateur"
-      },
-      {
-        title: "Extinction",
-        icon: "check",
-        to: "/extinction"
-      },
-      {
-        title: "Verfication configuration",
-        icon: "check",
-        to: "/verification"
-      }
-    ]
-  }
-];
+import { mapGetters } from "vuex";
 
 export default {
   name: "MainLayout",
   components: {
     MenuComponents
   },
+  mounted() {
+    //A effacer si vide en fin de projet
+    // console.log(getMenuJson);
+    console.log(this.getPage[0]);
+  },
   data() {
     return {
-      leftDrawerOpen: false,
-      Menu
+      leftDrawerOpen: false
     };
+  },
+  computed: {
+    ...mapGetters("moduleJson", ["getMenuJson", "getPage"])
   }
 };
 </script>
