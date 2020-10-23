@@ -113,7 +113,7 @@ export default {
   mounted() {
     //A effacer si vide en fin de projet
     // console.log(getMenuJson);
-    console.log(this.getPage[0]);
+    //console.log(this.getPage[0]);
   },
   data() {
     return {
