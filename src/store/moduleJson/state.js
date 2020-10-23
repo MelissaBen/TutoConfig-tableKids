@@ -11,7 +11,7 @@ export default function () {
         children: [
           {
             label: "Materiels",
-            icon: "mail",
+            icon: "check",
             to: "/materiels"
           },
           {

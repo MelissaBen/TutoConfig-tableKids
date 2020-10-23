@@ -1,62 +1,35 @@
 
 <template>
   <q-page>
-    <div class="q-pa-lg q-gutter-sm">
-      <q-tree :nodes="this.getMenuJson" default-expand-all node-key="label" />
-    </div>
-
-    <div class="q-pa-md">
-      <div class=" flex flex-center q-pa-lg q-gutter-lg row">
-        <q-btn
-          v-for="item in this.getMenuJson"
-          :key="item.label"
-          style="min-width: 400px"
-          :color="item.color"
-          :label="item.label"
-          icon="keyboard_arrow_down"
-        >
-          <q-menu transition-show="flip-right" transition-hide="flip-left">
-            <q-list
-              v-for="item in item.children"
-              v-bind:key="item.title"
-              style="min-width: 400px"
+    <div class=" q-pa-lg q-gutter-sm ">
+      <q-tree
+        :nodes="this.getMenuJson"
+        default-expand-all
+        node-key="label"
+        class="itemTree"
+      >
+        <template v-slot:default-header="item">
+          <div class="row items-center">
+            <q-icon
+              :name="item.node.icon || 'share'"
+              color="orange"
+              size="28px"
+              class="q-mr-sm"
+            />
+            <div
+              class="text-weight-bold text-primary"
+              @click="hasHistory(item.node.to)"
             >
-              <q-item v-if="item.to" :to="item.to" clickable>
-                <q-item-section>{{ item.label }}</q-item-section>
-              </q-item>
-
-              <q-item v-else :label="item.label" :icon="item.icon">
-                <q-item-section>
-                  {{ item.label }}
-                  <q-menu
-                    transition-show="flip-right"
-                    transition-hide="flip-left"
-                    class=""
-                    clickable
-                  >
-                    <q-list
-                      v-for="tiroir in item.children"
-                      v-bind:key="tiroir.label"
-                      sclass="q-pa-lg "
-                      style="min-width: 200px "
-                    >
-                      <q-item :to="tiroir.to" clickable>
-                        <q-item-section>{{ tiroir.label }}</q-item-section>
-                      </q-item>
-                    </q-list>
-                  </q-menu>
-                </q-item-section>
-              </q-item>
-            </q-list>
-          </q-menu>
-        </q-btn>
-      </div>
-    </div>
-
+              {{ item.node.label }}
+            </div>
+          </div>
+        </template>
+      </q-tree>
+      <!--
     <div class="q-pa-md test">
       <q-list
         v-for="item in this.getMenuJson"
-        :key="item.title"
+        :key="item.label"
         bordered
         class="rounded-border test "
       >
@@ -68,22 +41,22 @@
           caption="5 unread emails"
           header-class="text-primary"
         >
-          <q-list v-for="item in item.tab" v-bind:key="item.title">
+          <q-list v-for="item in item.children" v-bind:key="item.label">
             <q-item
-              v-if="item.to.length"
+              v-if="item.to"
               :to="item.to"
               :header-inset-level="1"
               :content-inset-level="1"
               expand-separator
               icon="schedule"
-              :label="item.title"
+              :label="item.label"
               default-opened
             >
               <q-item-section avatar>
                 <q-icon :name="item.icon" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>{{ item.title }} </q-item-label>
+                <q-item-label>{{ item.label }} </q-item-label>
               </q-item-section>
             </q-item>
 
@@ -92,15 +65,15 @@
               :header-inset-level="1"
               expand-separator
               icon="receipt"
-              :label="item.title"
+              :label="item.label"
               default-opened
             >
               <q-expansion-item
-                v-for="tiroir in item.multi"
-                v-bind:key="tiroir.title"
+                v-for="tiroir in item.children"
+                v-bind:key="tiroir.label"
                 switch-toggle-side
                 dense-toggle
-                :label="tiroir.title"
+                :label="tiroir.label"
                 :header-inset-level="1"
                 :content-inset-level="2"
               >
@@ -117,9 +90,9 @@
           </q-list>
         </q-expansion-item>
       </q-list>
-    </div>
-    <div>
-      <q-img alt=" logo" src="~assets/tableKids.jpg" />
+    </div>-->
+
+      <!-- <q-img class="img" alt="logo" src="~assets/tableKids.jpg" />-->
     </div>
   </q-page>
 </template>
@@ -135,14 +108,17 @@ export default {
       selected: null
     };
   },
+
   computed: {
     ...mapGetters("moduleJson", ["getMenuJson"])
+  },
+  methods: {
+    hasHistory(link) {
+      if (link !== "undefined" && link) {
+        this.$router.push(link);
+      }
+    }
   }
 };
 </script>
 
-<style lang="sass" scoped>
-.ok
-  border : 1px solid black
-  margin-left: 100px
-</style>
