@@ -12,11 +12,15 @@
           class="q-py-sm"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title class="toolbarTitle">
           Table kids
         </q-toolbar-title>
+        <!-- Navigation Tabs -->
 
-        <div class="q-mr-lg q-gutter-md" v-if="this.$route.path != '/'">
+        <div
+          class=" button q-pa-sm q-gutter-lg row"
+          v-if="this.$route.path != '/'"
+        >
           <q-btn color="grey" label="Accueil " to="/" />
           <q-btn
             color="grey"
@@ -24,7 +28,7 @@
             @click="hasHistory() ? $router.go(-1) : $router.push('/')"
           />
         </div>
-        <div class=" flex flex-center q-pa-lg q-gutter-lg row">
+        <div class="menuButton flex flex-center q-pa-sm q-gutter-lg row">
           <q-btn
             v-for="item in this.getMenuJson"
             :key="item.label"
@@ -120,3 +124,29 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+@media screen and (max-width: 1024px) {
+  .menuButton {
+    display: none;
+  }
+}
+@media screen and (max-width: 320px) {
+  .toolbarTitle {
+    display: none;
+  }
+  .button {
+    padding: 0;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 375px) {
+  .toolbarTitle {
+    font-size: 17px;
+    margin: 0;
+  }
+  .button {
+    padding: 0;
+  }
+}
+</style>

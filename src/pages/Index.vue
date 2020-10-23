@@ -12,19 +12,17 @@
           <div class="row items-center">
             <q-icon
               :name="item.node.icon || 'share'"
-              color="orange"
+              color="blue"
               size="28px"
               class="q-mr-sm"
             />
-            <div
-              class="text-weight-bold text-primary"
-              @click="hasHistory(item.node.to)"
-            >
+            <div class="text-black" @click="hasHistory(item.node.to)">
               {{ item.node.label }}
             </div>
           </div>
         </template>
       </q-tree>
+
       <!--
     <div class="q-pa-md test">
       <q-list
