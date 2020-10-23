@@ -7,7 +7,7 @@
       :icon="icon"
     >
       <q-list v-for="item in children" v-bind:key="item.label" class="q-pl-lg">
-        <q-item v-if="item.to.length" :to="item.to">
+        <q-item v-if="item.to" :to="item.to">
           <q-item-section avatar>
             <q-icon :name="item.icon" />
           </q-item-section>
@@ -56,15 +56,13 @@ export default {
     },
     to: {
       type: String,
-      required: true
+      required: false
     },
     icon: {
       type: String,
       default: ""
     },
-    multi: {
-      type: Array
-    },
+
     children: {
       type: Array
     }

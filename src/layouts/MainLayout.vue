@@ -24,7 +24,7 @@
             @click="hasHistory() ? $router.go(-1) : $router.push('/')"
           />
         </div>
-        {{ this.getMenuJson[0].children }}
+
         <div class="q-gutter-md">
           <q-btn
             v-for="item in this.getMenuJson"
@@ -41,12 +41,7 @@
                 :key="item.label"
                 default-opened
               >
-                <q-item
-                  default-opened
-                  clickable
-                  v-if="item.to.length"
-                  :to="item.to"
-                >
+                <q-item default-opened clickable v-if="item.to" :to="item.to">
                   <q-item-section avatar>
                     <q-icon :name="item.icon" />
                   </q-item-section>

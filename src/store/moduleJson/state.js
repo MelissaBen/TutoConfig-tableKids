@@ -6,7 +6,7 @@ export default function () {
       {
         label: "Montage de plaque",
         icon: "pages",
-        to: "",
+        
         color:"red",
         children: [
           {
@@ -55,7 +55,7 @@ export default function () {
       {
         label: "Configuration Mini pc ",
         icon: "pages",
-        to: "",
+        
         color:"primary",
         children: [
           {
@@ -66,7 +66,7 @@ export default function () {
           {
             label: "Contrôle parental",
             icon: "check",
-            to: "",
+            
             children: [
               {
                 label: "Mot de passe ",
@@ -93,7 +93,7 @@ export default function () {
           {
             label: "Paramètres",
             icon: "check",
-            to: "",
+            
             children: [
               {
                 label: "Paramètres Contrôle parental",
