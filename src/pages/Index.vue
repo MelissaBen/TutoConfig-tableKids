@@ -58,7 +58,81 @@
       </div>
     </div>-->
 
-    <div class="q-pa-md test" style="min-width: 800px">
+    <div class="q-pa-md q-gutter-sm">
+      <div>
+        <div class="q-gutter-sm">
+          <q-btn size="sm" color="primary" label="Select 'Good service'" />
+          <q-btn v-if="selected" size="sm" color="red" label="Unselect node" />
+        </div>
+      </div>
+      {{ this.getMenuJson[0].label }}
+      <q-tree
+        :nodes="this.getMenuJson[0].tab"
+        default-expand-all
+        :selected.sync="selected"
+        label-key="title"
+        node-key="title"
+        children-key="multi"
+      />
+      <q-tree
+        :nodes="this.getMenuJson[1].tab"
+        default-expand-all
+        :selected.sync="selected"
+        label-key="title"
+        node-key="title"
+        children-key="multi"
+      />
+    </div>
+
+    <div class="q-pa-md">
+      <div class=" flex flex-center q-pa-lg q-gutter-lg row">
+        <q-btn
+          v-for="item in this.getMenuJson"
+          :key="item.title"
+          style="min-width: 400px"
+          :color="item.color"
+          :label="item.label"
+          icon="keyboard_arrow_down"
+        >
+          <q-menu transition-show="flip-right" transition-hide="flip-left">
+            <q-list
+              v-for="item in item.tab"
+              v-bind:key="item.title"
+              style="min-width: 400px"
+            >
+              <q-item v-if="item.to.length" :to="item.to" clickable>
+                <q-item-section>{{ item.title }}</q-item-section>
+              </q-item>
+
+              <q-item v-else :label="item.title" :icon="item.icon">
+                <q-item-section side>
+                  {{ item.title }}
+                  <q-menu
+                    transition-show="flip-right"
+                    transition-hide="flip-left"
+                    class=""
+                    clickable
+                  >
+                    <q-list
+                      v-for="tiroir in item.multi"
+                      v-bind:key="tiroir.title"
+                      sclass="q-pa-lg "
+                      style="min-width: 200px "
+                    >
+                      <q-item :to="tiroir.to" clickable>
+                        <q-item-section>{{ tiroir.title }}</q-item-section>
+                      </q-item>
+                    </q-list>
+                  </q-menu>
+                </q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>
+        </q-btn>
+      </div>
+    </div>
+
+    <div class="q-pa-md test">
       <q-list
         v-for="item in this.getMenuJson"
         :key="item.title"
@@ -66,12 +140,11 @@
         class="rounded-border test "
       >
         <q-expansion-item
-          class="q-pa-md ok"
+          class="q-pa-md "
           expand-separator
           icon="mail"
           :label="item.label"
           caption="5 unread emails"
-          default-opened
           header-class="text-primary"
         >
           <q-list v-for="item in item.tab" v-bind:key="item.title">
@@ -137,18 +210,18 @@ export default {
   name: "PageIndex",
   data() {
     return {
-      Menu: this.getMenuJson
+      Menu: this.getMenuJson,
+      selected: null
     };
   },
   computed: {
-    ...mapGetters("moduleJson", ["getMenuJson"])
+    ...mapGetters("moduleJson", ["getMenuJson", "getTree"])
   }
 };
 </script>
 
 <style lang="sass" scoped>
-.test
-  display: flex
-  justify-content: space-around
-  width: 100%
+.ok
+  border : 1px solid black
+  margin-left: 100px
 </style>

@@ -7,10 +7,11 @@ export default function () {
         label: "Montage de plaque",
         icon: "pages",
         to: "",
+        color:"red",
         tab: [
           {
             title: "Materiels",
-            icon: "check",
+            icon: "mail",
             to: "/materiels"
           },
           {
@@ -37,6 +38,7 @@ export default function () {
             title: "Adhésif de protection",
             icon: "check",
             to: "/adhésifDeProtection"
+            
           },
           {
             title: "Vérification cablages du mini PC",
@@ -54,6 +56,7 @@ export default function () {
         label: "Configuration Mini pc ",
         icon: "pages",
         to: "",
+        color:"primary",
         tab: [
           {
             title: "Configuration de base",
@@ -93,7 +96,7 @@ export default function () {
             to: "",
             multi: [
               {
-                title: "Contrôle parental",
+                title: "Paramètres Contrôle parental",
                 icon: "check",
                 to: "/parametres"
               },
@@ -126,7 +129,7 @@ export default function () {
           }
         ]
       }
-    ], 
-   
+    ],
+    
   }
 }
