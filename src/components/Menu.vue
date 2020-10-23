@@ -6,25 +6,25 @@
       class="q-pt-lg"
       :icon="icon"
     >
-      <q-list v-for="item in tab" v-bind:key="item.title" class="q-pl-lg">
-        <q-item v-if="item.to.length" :to="item.to">
+      <q-list v-for="item in children" v-bind:key="item.label" class="q-pl-lg">
+        <q-item v-if="item.to" :to="item.to">
           <q-item-section avatar>
             <q-icon :name="item.icon" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>{{ item.title }} </q-item-label>
+            <q-item-label>{{ item.label }} </q-item-label>
           </q-item-section>
         </q-item>
 
         <q-expansion-item
           default-opened
           v-else
-          :label="item.title"
+          :label="item.label"
           :icon="item.icon"
         >
           <q-list
-            v-for="tiroir in item.multi"
-            v-bind:key="tiroir.title"
+            v-for="tiroir in item.children"
+            v-bind:key="tiroir.label"
             class="q-pl-lg"
           >
             <q-item :to="tiroir.to" class="q-pl-lg">
@@ -32,7 +32,7 @@
                 <q-icon :name="tiroir.icon" />
               </q-item-section>
               <q-item-section>
-                <q-item-label>{{ tiroir.title }} </q-item-label>
+                <q-item-label>{{ tiroir.label }} </q-item-label>
               </q-item-section>
             </q-item>
           </q-list>
@@ -56,16 +56,14 @@ export default {
     },
     to: {
       type: String,
-      required: true
+      required: false
     },
     icon: {
       type: String,
       default: ""
     },
-    multi: {
-      type: Array
-    },
-    tab: {
+
+    children: {
       type: Array
     }
   }

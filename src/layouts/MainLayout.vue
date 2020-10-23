@@ -24,6 +24,7 @@
             @click="hasHistory() ? $router.go(-1) : $router.push('/')"
           />
         </div>
+
         <div class="q-gutter-md">
           <q-btn
             v-for="item in this.getMenuJson"
@@ -36,32 +37,27 @@
             <q-menu fit>
               <q-list
                 style="min-width: 100px"
-                v-for="item in item.tab"
-                v-bind:key="item.title"
+                v-for="item in item.children"
+                :key="item.label"
                 default-opened
               >
-                <q-item
-                  default-opened
-                  clickable
-                  v-if="item.to.length"
-                  :to="item.to"
-                >
+                <q-item default-opened clickable v-if="item.to" :to="item.to">
                   <q-item-section avatar>
                     <q-icon :name="item.icon" />
                   </q-item-section>
                   <q-item-section>
-                    <q-item-label>{{ item.title }} </q-item-label>
+                    <q-item-label>{{ item.label }} </q-item-label>
                   </q-item-section>
                 </q-item>
                 <q-expansion-item
                   default-opened
                   v-else
-                  :label="item.title"
+                  :label="item.label"
                   :icon="item.icon"
                 >
                   <q-list
-                    v-for="tiroir in item.multi"
-                    v-bind:key="tiroir.title"
+                    v-for="tiroir in item.children"
+                    v-bind:key="tiroir.label"
                     class="q-pl-lg"
                   >
                     <q-item :to="tiroir.to" class="q-pl-lg">
@@ -69,7 +65,7 @@
                         <q-icon :name="tiroir.icon" />
                       </q-item-section>
                       <q-item-section>
-                        <q-item-label>{{ tiroir.title }} </q-item-label>
+                        <q-item-label>{{ tiroir.label }} </q-item-label>
                       </q-item-section>
                     </q-item>
                   </q-list>
@@ -91,7 +87,7 @@
     >
       <MenuComponents
         v-for="link in this.getMenuJson"
-        :key="link.title"
+        :key="link.label"
         v-bind="link"
       />
     </q-drawer>
