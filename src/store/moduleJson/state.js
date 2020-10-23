@@ -8,7 +8,7 @@ export default function () {
         icon: "pages",
         to: "",
         color:"red",
-        tab: [
+        children: [
           {
             title: "Materiels",
             icon: "mail",
@@ -57,7 +57,7 @@ export default function () {
         icon: "pages",
         to: "",
         color:"primary",
-        tab: [
+        children: [
           {
             title: "Configuration de base",
             icon: "check",
