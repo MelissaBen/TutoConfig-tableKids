@@ -10,43 +10,43 @@ export default function () {
         color:"red",
         children: [
           {
-            title: "Materiels",
+            label: "Materiels",
             icon: "mail",
             to: "/materiels"
           },
           {
-            title: "Plaques & cables",
+            label: "Plaques & cables",
             icon: "check",
             to: "/cables"
           },
           {
-            title: "Fixation des câbles et mini PC",
+            label: "Fixation des câbles et mini PC",
             icon: "check",
             to: "/fixationCables"
           },
           {
-            title: "Positionnement adhésif",
+            label: "Positionnement adhésif",
             icon: "check",
             to: "/positionAdhésif"
           },
           {
-            title: "Collage alimentation de l'écran",
+            label: "Collage alimentation de l'écran",
             icon: "check",
             to: "/collage"
           },
           {
-            title: "Adhésif de protection",
+            label: "Adhésif de protection",
             icon: "check",
             to: "/adhésifDeProtection"
             
           },
           {
-            title: "Vérification cablages du mini PC",
+            label: "Vérification cablages du mini PC",
             icon: "check",
             to: "/verificationCables"
           },
           {
-            title: "Mise en place | Accroche des câbles",
+            label: "Mise en place | Accroche des câbles",
             icon: "check",
             to: "/miseEnPlace"
           }
@@ -59,71 +59,71 @@ export default function () {
         color:"primary",
         children: [
           {
-            title: "Configuration de base",
+            label: "Configuration de base",
             icon: "check",
             to: "/configBase"
           },
           {
-            title: "Contrôle parental",
+            label: "Contrôle parental",
             icon: "check",
             to: "",
-            multi: [
+            children: [
               {
-                title: "Mot de passe ",
+                label: "Mot de passe ",
                 icon: "check",
                 to: "/motdepasse"
               },
               {
-                title: "Lier le compte kiddoware",
+                label: "Lier le compte kiddoware",
                 icon: "check",
                 to: "/compteKiddoware"
               },
               {
-                title: "Autorisation et bloquage",
+                label: "Autorisation et bloquage",
                 icon: "check",
                 to: "/autorisation"
               }
             ]
           },
           {
-            title: "Sauvegarde et restauration",
+            label: "Sauvegarde et restauration",
             icon: "check",
             to: "/save"
           },
           {
-            title: "Paramètres",
+            label: "Paramètres",
             icon: "check",
             to: "",
-            multi: [
+            children: [
               {
-                title: "Paramètres Contrôle parental",
+                label: "Paramètres Contrôle parental",
                 icon: "check",
                 to: "/parametres"
               },
               {
-                title: "Paramètre avancés",
+                label: "Paramètre avancés",
                 icon: "check",
                 to: "/parametreAvances"
               },
               {
-                title: "Paramètre interface",
+                label: "Paramètre interface",
                 icon: "check",
                 to: "/parametreInterface"
               }
             ]
           },
           {
-            title: "Gestion Utilisateur",
+            label: "Gestion Utilisateur",
             icon: "check",
             to: "/gestionutilisateur"
           },
           {
-            title: "Extinction",
+            label: "Extinction",
             icon: "check",
             to: "/extinction"
           },
           {
-            title: "Verfication configuration",
+            label: "Verfication configuration",
             icon: "check",
             to: "/verification"
           }

@@ -65,7 +65,7 @@
           <q-btn v-if="selected" size="sm" color="red" label="Unselect node" />
         </div>
       </div>
-      {{ this.getMenuJson[0].label }}
+      {{ this.getMenuJson[1].children[1] }}
       <q-tree
         :nodes="this.getMenuJson[0].tab"
         default-expand-all
